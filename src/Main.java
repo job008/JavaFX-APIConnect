@@ -25,7 +25,17 @@ public class Main extends Application {
         controller.initStage(primaryStage);
 
         primaryStage.setTitle(System.getProperty("projectName") + " - version "+ System.getProperty("version"));
-        primaryStage.getIcons().add(new Image(Main.class.getResourceAsStream(System.getProperty("favicon"))));
+
+        //check for icon
+        if(System.getProperty("favicon") != null){
+            try {
+                primaryStage.getIcons().add(new Image(Main.class.getResourceAsStream(System.getProperty("favicon"))));
+            } catch (Exception e){
+                System.out.println("error - Main.start():");
+                System.out.println(e);
+            }
+        }
+
         primaryStage.setScene(new Scene(loadedScene, 300, 275));
         primaryStage.show();
     }
