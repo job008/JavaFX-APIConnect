@@ -25,7 +25,6 @@ public class PropertyHandeler {
 
     public PropertyHandeler(String name){
         this.target = new File(getClass().getResource(name+".properties").getPath())  ;
-        systemInit();
     }
 
     public PropertyHandeler(boolean systemprops){

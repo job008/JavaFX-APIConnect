@@ -18,7 +18,7 @@ import java.util.HashMap;
 public class APIConnect {
 
     private URL apiUrl;
-    private String APIKey;
+    private String alwaysSend;
     private String sendMethod;
 
     private String dataResp;
@@ -28,20 +28,50 @@ public class APIConnect {
      *
      * Please note the default properties are defined in the "res/conf/api.properies" file
      *
-     * To add another ApiConnect create a new {name}.properties file with
-     * the {name}.APIUrl and {name}.sentMethod and {name}.APIKey
+     * @param url base of url
+     * @param sentMethod either post or get
+     * @param alwaysSend (optional) sents the alwaysSend with all requests but must be written a
      *
+     *                   or
      *
-     * @param name (optional) specifies the name to the apiconfig properties file
+     * @param name (optional) specifies the name of the properies file used
+     *
      */
+
+    public APIConnect(String url, String sentMethod, String alwaysSend){
+        try {
+            this.apiUrl = new URL(url);
+            this.sendMethod = sentMethod;
+            this.alwaysSend = alwaysSend;
+
+        } catch (MalformedURLException e){
+            System.out.println("error - DataConnect.construct:");
+            System.out.println(e);
+        }
+
+        requestData();
+    }
+
+    public APIConnect(String url, String sentMethod){
+        try {
+            this.apiUrl = new URL(url);
+            this.sendMethod = sentMethod;
+
+        } catch (MalformedURLException e){
+            System.out.println("error - DataConnect.construct:");
+            System.out.println(e);
+        }
+
+        requestData();
+    }
 
     public APIConnect(String name){
         PropertyHandeler PH = new PropertyHandeler(name);
 
         try {
-            this.apiUrl = new URL(System.getProperty(name+".APIUrl"));
-            this.sendMethod = System.getProperty(name+".sentMethod");
-            this.APIKey = System.getProperty(name+".APIKey");
+            this.apiUrl = new URL(PH.get("APIUrl"));
+            this.sendMethod = PH.get("sentMethod");
+            this.alwaysSend = PH.get("alwaysSend");
 
         } catch (MalformedURLException e){
             System.out.println("error - DataConnect.construct:");
@@ -57,7 +87,7 @@ public class APIConnect {
         try {
             this.apiUrl = new URL(System.getProperty("main.APIUrl"));
             this.sendMethod = System.getProperty("main.sentMethod");
-            this.APIKey = System.getProperty("main.APIKey");
+            this.alwaysSend = System.getProperty("main.alwaysSend");
 
         } catch (MalformedURLException e){
             System.out.println("error - DataConnect.construct:");
@@ -77,7 +107,7 @@ public class APIConnect {
 
     public void requestData(String parameters){
 
-        parameters = parameters +"&"+ this.APIKey;
+        parameters = parameters +"&"+ this.alwaysSend;
 
         HttpURLConnection connection = null;
         try {
@@ -128,8 +158,8 @@ public class APIConnect {
             sentString.append(key+"="+value+"&");
         });
 
-        if(this.APIKey != null){
-            sentString.append(APIKey);
+        if(this.alwaysSend != null){
+            sentString.append(alwaysSend);
         }
 
         String sentstring = sentString.toString();
@@ -189,6 +219,14 @@ public class APIConnect {
 
             connection.setUseCaches(false);
             connection.setDoOutput(true);
+
+            if(alwaysSend != null){
+                //send data
+                DataOutputStream wr = new DataOutputStream (connection.getOutputStream());
+                wr.writeBytes(alwaysSend);
+                wr.close();
+            }
+
 
             //receive data
             InputStream in = connection.getInputStream();
