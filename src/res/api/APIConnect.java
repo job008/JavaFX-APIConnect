@@ -71,7 +71,9 @@ public class APIConnect {
         try {
             this.apiUrl = new URL(PH.get("APIUrl"));
             this.sendMethod = PH.get("sentMethod");
-            this.alwaysSend = PH.get("alwaysSend");
+            if (PH.get("alwaysSend") != null){
+                this.alwaysSend = System.getProperty("alwaysSend");
+            }
 
         } catch (MalformedURLException e){
             System.out.println("error - DataConnect.construct:");
@@ -85,9 +87,12 @@ public class APIConnect {
         PropertyHandeler PH = new PropertyHandeler("api");
 
         try {
-            this.apiUrl = new URL(System.getProperty("main.APIUrl"));
-            this.sendMethod = System.getProperty("main.sentMethod");
-            this.alwaysSend = System.getProperty("main.alwaysSend");
+            this.apiUrl = new URL(PH.get("APIUrl"));
+            this.sendMethod = PH.get("sentMethod");
+            if (PH.get("alwaysSend") != null){
+                this.alwaysSend = System.getProperty("alwaysSend");
+            }
+
 
         } catch (MalformedURLException e){
             System.out.println("error - DataConnect.construct:");
