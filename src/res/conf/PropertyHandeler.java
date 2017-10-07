@@ -1,9 +1,6 @@
 package res.conf;
 
 import java.io.*;
-import java.net.URL;
-import java.util.Enumeration;
-import java.util.HashMap;
 import java.util.Properties;
 
 /**
@@ -43,7 +40,27 @@ public class PropertyHandeler {
         systemInit();
     }
 
+    /**
+     * function get()
+     *
+     * @param key String
+     * @return value|null
+     */
 
+    public String get(String key){
+        Properties prop = new Properties();
+        try {
+            InputStream in = new FileInputStream(this.target);
+            prop.load(in);
+
+            return prop.getProperty(key);
+
+        } catch (IOException e){
+            System.out.println("error - PropertyHandeler.setAllToSystem:");
+            System.out.println(e);
+            return null;
+        }
+    }
 
     /**
      * function addProperty()
@@ -116,11 +133,13 @@ public class PropertyHandeler {
      */
 
    private void systemInit(){
-       Properties prop = new Properties();
+//       Properties prop = new Properties();
+       Properties oldProps = System.getProperties();
        try {
            InputStream in = new FileInputStream(this.target);
-           prop.load(in);
-           System.setProperties(prop);
+//           prop.load(in);
+           oldProps.load(in);
+           System.setProperties(oldProps);
 
        } catch (IOException e){
            System.out.println("error - PropertyHandeler.setAllToSystem:");
