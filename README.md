@@ -9,6 +9,10 @@ Note that this fuction requires a path relative to the current controller.
 I hope this will help
 Have Fun!
 
-- Job Stoit
+Job Stoit
 
-  Jobbitz.nl
+Jobbitz.nl
+
+
+to install you'll need to put the following commant in the terminal:
+<p style="background-color:#000; color: #ffffff; padding: 5px;">$ git clone https://github.com/job008/JavaFX-APIConnect {dirName}</p>
