@@ -7,6 +7,8 @@ import javafx.stage.Stage;
 import scenes.Controller;
 import res.conf.PropertyHandeler;
 
+import java.awt.*;
+
 /**
  * created by Job Stoit at Oktober 1 2017
  */
@@ -30,6 +32,12 @@ public class Main extends Application {
         if(System.getProperty("favicon") != null){
             try {
                 primaryStage.getIcons().add(new Image(Main.class.getResourceAsStream(System.getProperty("favicon"))));
+
+                if (System.getProperty("os.name").equals("Mac OS X")){
+                    java.awt.Image img = Toolkit.getDefaultToolkit().getImage(getClass().getResource(System.getProperty("favicon")));
+                    com.apple.eawt.Application.getApplication().setDockIconImage(img);
+                }
+
             } catch (Exception e){
                 System.out.println("error - Main.start():");
                 System.out.println(e);
