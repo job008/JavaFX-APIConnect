@@ -55,7 +55,7 @@ public class PropertyHandeler {
             return prop.getProperty(key);
 
         } catch (IOException e){
-            System.out.println("error - PropertyHandeler.setAllToSystem:");
+            System.out.println("error - "+ getClass().getName() +".get() :");
             System.out.println(e);
             return null;
         }
@@ -87,7 +87,7 @@ public class PropertyHandeler {
         } catch (FileNotFoundException e){
             System.out.println(e);
         } catch (IOException e){
-            System.out.println("error - ProperyHandeler.addPropery :");
+            System.out.println("error - "+ getClass().getName() +".add() :");
             System.out.println(e);
         }
     }
@@ -118,7 +118,7 @@ public class PropertyHandeler {
             systemInit();
 
         } catch (IOException e){
-            System.out.println("error - ProperyHandeler.addPropery :");
+            System.out.println("error - "+ getClass().getName() +".remove() :");
             System.out.println(e);
         }
     }
@@ -141,7 +141,7 @@ public class PropertyHandeler {
            System.setProperties(oldProps);
 
        } catch (IOException e){
-           System.out.println("error - PropertyHandeler.setAllToSystem:");
+           System.out.println("error - "+ getClass().getName() +".systemInit() :");
            System.out.println(e);
        }
    }

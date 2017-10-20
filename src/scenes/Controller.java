@@ -46,7 +46,7 @@ public abstract class Controller {
             priStage.getScene().setRoot(scene);
 
         } catch (IOException e) {
-            System.out.println("error - Controller.nextScene :");
+            System.out.println("error - "+ getClass().getName() +".nextScene() :");
             System.out.println(e);
         }
 

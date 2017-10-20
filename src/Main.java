@@ -6,7 +6,6 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import scenes.Controller;
 import res.conf.PropertyHandeler;
-
 import java.awt.*;
 
 /**
@@ -26,10 +25,11 @@ public class Main extends Application {
 
         controller.initStage(primaryStage);
 
+        // setting a title
         primaryStage.setTitle(System.getProperty("projectName") + " - version "+ System.getProperty("version"));
 
-        //check for icon
-        if(System.getProperty("favicon") != null){
+        // check for icon
+        if (System.getProperty("favicon") != null) {
             try {
                 primaryStage.getIcons().add(new Image(Main.class.getResourceAsStream(System.getProperty("favicon"))));
 
@@ -39,12 +39,12 @@ public class Main extends Application {
                 }
 
             } catch (Exception e){
-                System.out.println("error - Main.start():");
+                System.out.println("error - "+ getClass().getName() +".start():");
                 System.out.println(e);
             }
         }
 
-        primaryStage.setScene(new Scene(loadedScene, 300, 275));
+        primaryStage.setScene(new Scene(loadedScene, 600, 400));
         primaryStage.show();
     }
 

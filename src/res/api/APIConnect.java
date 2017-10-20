@@ -45,7 +45,7 @@ public class APIConnect {
             this.alwaysSend = alwaysSend;
 
         } catch (MalformedURLException e){
-            System.out.println("error - APIConnect.construct:");
+            System.out.println("error - "+ getClass().getName() +".construct() :");
             System.out.println(e);
         }
 
@@ -58,7 +58,7 @@ public class APIConnect {
             this.sendMethod = sentMethod;
 
         } catch (MalformedURLException e){
-            System.out.println("error - APIConnect.construct:");
+            System.out.println("error - "+ getClass().getName() +".construct() :");
             System.out.println(e);
         }
 
@@ -76,7 +76,7 @@ public class APIConnect {
             }
 
         } catch (MalformedURLException e){
-            System.out.println("error - APIConnect.construct:");
+            System.out.println("error - "+ getClass().getName() +".construct() :");
             System.out.println(e);
         }
 
@@ -95,7 +95,7 @@ public class APIConnect {
 
 
         } catch (MalformedURLException e){
-            System.out.println("error - APIConnect.construct:");
+            System.out.println("error - "+ getClass().getName() +".construct() :");
             System.out.println(e);
         }
 
@@ -148,7 +148,7 @@ public class APIConnect {
 
             connection.disconnect();
         } catch (IOException e){
-            System.out.println("error - APIConnect.requestData:");
+            System.out.println("error - "+ getClass().getName() +".requestData() :");
             System.out.println(e);
         }
     }
@@ -203,7 +203,7 @@ public class APIConnect {
 
             connection.disconnect();
         } catch (IOException e){
-            System.out.println("error - APIConnect.requestData:");
+            System.out.println("error - "+ getClass().getName() +".requestData() :");
             System.out.println(e);
         }
     }
@@ -249,7 +249,7 @@ public class APIConnect {
 
             connection.disconnect();
         } catch (IOException e){
-            System.out.println("error - APIConnect.requestData:");
+            System.out.println("error - "+ getClass().getName() +".requestData() :");
             System.out.println(e);
         }
     }
